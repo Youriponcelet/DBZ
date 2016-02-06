@@ -23,8 +23,11 @@ $OUTPUT = NULL;
 // set the menu based on tables
 $OUTPUT .= View::MenuTable ($MODEL->Name_DB(), $MODEL->List_Table());
 
-
-
+// User click on a table
+if(isset($_GET['T']))
+	{
+	$OUTPUT .= View::DataTable($MODEL->Name_DB(), $MODEL->EntitiesTable($_GET['T']));
+	}
 
 // output echo screen rendering 
 View::HTML($CONFIG['MODULE_NAME'], $OUTPUT);
