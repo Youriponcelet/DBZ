@@ -29,6 +29,28 @@ if(isset($_GET['T']))
 	$OUTPUT .= View::DataTable($MODEL->Name_DB(), $MODEL->EntitiesTable($_GET['T']));
 	}
 
+if(isset($_GET['REQ'])) 
+	{
+	if ($_GET['REQ'] == 'DEL_TABLE') //DELETE A TABLE
+		{
+		$OUTPUT .= View::DEL_TABLE($MODEL->DeleteTable($_GET['T']));
+		}
+	else if ($_GET['REQ'] == 'DEL_DATA') // DELETE A VALUE
+		{
+		$OUTPUT .= View::DEL_DATA($MODEL->DeleteData($_GET['T'], $_GET['PRIMARY'], $_GET['ID']));
+		}
+	else if ($_GET['REQ'] == 'UPDATE_DATA') // UPDATE AN ENTITIES
+		{
+		$OUTPUT .= View::MOD_ENTITIES($MODEL->Name_DB(), $MODEL->EntitiesTable($_GET['T']));
+		}
+	else if ($_GET['REQ'] == 'ADD_ENTITIES') // ADD AN ENTITIES
+		{
+		$OUTPUT .= View::ADD_ENTITIES($MODEL->Name_DB(), $MODEL->EntitiesTable($_GET['T']));
+		}
+	}
+
+
+
 // output echo screen rendering 
 View::HTML($CONFIG['MODULE_NAME'], $OUTPUT);
 
